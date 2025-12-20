@@ -1,0 +1,27 @@
+title: Arima X
+description: Official website of Arima X - AI-generated artist
+url: ""
+baseurl: ""
+
+author:
+  name: Arima X
+  email: arima.x@nimbox360.com
+
+social:
+  spotify: "https://open.spotify.com/intl-es/artist/58RDF7BXH0mgw6lk8IYTND"
+  instagram: "https://www.instagram.com/arimax.oficial/"
+  youtube: "https://music.youtube.com/channel/UCBH-Rbkz1En2OPRSnLRSEoQ"
+  tiktok: "https://www.tiktok.com/@arimax.oficial"
+
+markdown: kramdown
+permalink: pretty
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - LICENSE
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
