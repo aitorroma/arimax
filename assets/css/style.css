@@ -138,7 +138,7 @@ main {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    z-index: -1;
+    z-index: 0;
 }
 
 .hero-background::before {
@@ -148,13 +148,8 @@ main {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to bottom, rgba(10, 10, 10, 0.3), rgba(10, 10, 10, 0.7));
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.8));
     z-index: 1;
-}
-
-@keyframes pulse {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
-    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.5; }
 }
 
 .hero-content {
@@ -201,32 +196,39 @@ main {
 
 .btn {
     display: inline-block;
-    padding: 1rem 2rem;
+    padding: 1rem 2.5rem;
     border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s;
-    border: 2px solid transparent;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
 }
 
 .btn-primary {
     background: var(--gradient);
     color: white;
+    box-shadow: 0 4px 15px rgba(255, 0, 110, 0.4);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(255, 0, 110, 0.3);
+    box-shadow: 0 10px 30px rgba(255, 0, 110, 0.6);
 }
 
 .btn-secondary {
-    border-color: var(--primary-color);
-    color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
 }
 
 .btn-secondary:hover {
-    background: var(--primary-color);
-    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    border-color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
 }
 
 .btn-small {
@@ -256,13 +258,21 @@ main {
     background-clip: text;
 }
 
+.section-subtitle {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-top: -2rem;
+    margin-bottom: 3rem;
+}
+
 .music-grid,
 .platforms-grid,
 .albums-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
 }
 
 .album-featured {
@@ -597,10 +607,14 @@ main {
 }
 
 .tech-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    justify-content: center;
     gap: 3rem;
     margin-top: 3rem;
+}
+
+.tech-grid .tech-card {
+    max-width: 500px;
 }
 
 .tech-card {
@@ -628,11 +642,7 @@ main {
 .tech-logo img {
     max-height: 100%;
     max-width: 200px;
-    filter: brightness(1.2);
-}
-
-.suno-logo {
-    color: var(--primary-color);
+    filter: brightness(1.1);
 }
 
 .tech-card h3 {
@@ -721,12 +731,199 @@ main {
 }
 
 .embed-container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
     background: var(--light-bg);
-    padding: 3rem;
+    padding: 2rem;
     border-radius: 15px;
     text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Featured Album Music Page */
+.featured-album-music {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, rgba(255, 0, 110, 0.05), rgba(138, 43, 226, 0.05));
+}
+
+.featured-album-card {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    align-items: center;
+    background: var(--light-bg);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.featured-album-image {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(255, 0, 110, 0.4);
+}
+
+.featured-album-image img {
+    width: 100%;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.featured-album-image:hover .play-overlay {
+    opacity: 1;
+}
+
+.featured-album-image:hover img {
+    transform: scale(1.05);
+}
+
+.play-button {
+    width: 80px;
+    height: 80px;
+    background: var(--gradient);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+}
+
+.play-button:hover {
+    transform: scale(1.1);
+}
+
+.featured-album-details {
+    padding: 1rem;
+}
+
+.album-badge {
+    display: inline-block;
+    background: var(--gradient);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.featured-album-details h3 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.album-meta {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.album-description {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.featured-album-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Discography Sections */
+.discography {
+    padding: 3rem 0;
+}
+
+.discography-section {
+    margin-bottom: 2.5rem;
+}
+
+.discography-category {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(255, 0, 110, 0.3);
+}
+
+.album-cover {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    aspect-ratio: 1;
+}
+
+.album-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.album-card:hover .album-overlay {
+    opacity: 1;
+}
+
+.album-play-btn {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+}
+
+.album-play-btn:hover {
+    transform: scale(1.15);
+}
+
+.album-info {
+    padding: 0.75rem 0;
+}
+
+.album-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+    color: var(--text-primary);
+}
+
+.album-year {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+}
+
+.album-type {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
 }
 
 .embed-placeholder {
@@ -956,7 +1153,54 @@ main {
     font-size: 0.85rem;
 }
 
+/* Tablet Landscape - 1024px */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 2rem;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+    }
+
+    .story-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .story-image {
+        position: relative;
+        top: 0;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .album-featured {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        max-width: 700px;
+    }
+
+    .album-featured-cover {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tech-grid {
+        gap: 2rem;
+    }
+}
+
+/* Tablet Portrait - 768px */
 @media (max-width: 768px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+
     .nav-menu {
         position: fixed;
         left: -100%;
@@ -968,6 +1212,7 @@ main {
         transition: 0.3s;
         padding: 2rem 0;
         gap: 1rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
 
     .nav-menu.active {
@@ -976,6 +1221,38 @@ main {
 
     .mobile-menu-toggle {
         display: flex;
+    }
+
+    .hero {
+        min-height: 70vh;
+        padding: 6rem 0 4rem;
+    }
+
+    .hero h1 {
+        font-size: clamp(2rem, 5vw, 3rem);
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .section-title {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+    }
+
+    .page-header h1 {
+        font-size: clamp(2rem, 5vw, 3rem);
     }
 
     .about-grid,
@@ -987,6 +1264,7 @@ main {
     .album-featured {
         grid-template-columns: 1fr;
         gap: 2rem;
+        max-width: 500px;
     }
     
     .album-featured-cover {
@@ -994,16 +1272,53 @@ main {
         margin: 0 auto;
     }
 
+    .featured-album-card {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem;
+    }
+
+    .featured-album-details h3 {
+        font-size: 2rem;
+    }
+
+    .album-featured-info {
+        padding: 1.5rem;
+    }
+
+    .album-featured-buttons {
+        flex-direction: column;
+    }
+
+    .album-featured-buttons .btn {
+        width: 100%;
+    }
+
+    .music-grid,
+    .platforms-grid,
+    .albums-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
     .story-grid {
         grid-template-columns: 1fr;
-        gap: 3rem;
+        gap: 2.5rem;
     }
 
     .story-image {
         position: relative;
         top: 0;
-        max-width: 500px;
+        max-width: 450px;
         margin: 0 auto;
+    }
+
+    .intro-title {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+    }
+
+    .intro-text {
+        font-size: 1.05rem;
     }
 
     .stats-grid {
@@ -1011,9 +1326,21 @@ main {
         gap: 1.5rem;
     }
 
+    .stat-card {
+        padding: 1.5rem;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+    }
+
     .tech-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
+    }
+
+    .tech-card {
+        padding: 2rem;
     }
 
     .timeline::before {
@@ -1031,31 +1358,214 @@ main {
 
     .timeline-date {
         text-align: left;
+        font-size: 1rem;
     }
 
-    .stats {
-        grid-template-columns: 1fr;
+    .contact-methods {
+        gap: 1.5rem;
+    }
+
+    .contact-method {
+        padding: 1.5rem;
     }
 
     .newsletter-form {
         flex-direction: column;
     }
 
-    .hero-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .btn {
-        width: 100%;
-        max-width: 300px;
+    .social-links {
+        gap: 1.2rem;
     }
 }
 
+/* Mobile Large - 480px */
 @media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .hero {
+        min-height: 60vh;
+        padding: 5rem 0 3rem;
+    }
+
+    .hero h1 {
+        font-size: clamp(1.8rem, 6vw, 2.5rem);
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+    }
+
+    .page-header {
+        padding: 4rem 0 2rem;
+    }
+
+    .page-header h1 {
+        font-size: clamp(1.8rem, 6vw, 2.5rem);
+    }
+
     .music-grid,
     .platforms-grid,
     .albums-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .album-featured {
+        gap: 1.5rem;
+    }
+
+    .album-featured-cover {
+        max-width: 100%;
+    }
+
+    .featured-album-card {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .featured-album-details h3 {
+        font-size: 1.8rem;
+    }
+
+    .album-description {
+        font-size: 1rem;
+    }
+
+    .discography-category {
+        font-size: 1.5rem;
+    }
+
+    .album-featured-info {
+        padding: 1rem;
+    }
+
+    .album-featured-description {
+        font-size: 1rem;
+    }
+
+    .album-tracklist h4 {
+        font-size: 1.1rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .stat-card {
+        padding: 1.5rem 1rem;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+    }
+
+    .intro-title {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+    }
+
+    .intro-text {
+        font-size: 1rem;
+    }
+
+    .story-section h3 {
+        font-size: 1.5rem;
+    }
+
+    .story-section p {
+        font-size: 1rem;
+    }
+
+    .tech-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .tech-logo {
+        height: 60px;
+    }
+
+    .tech-card h3 {
+        font-size: 1.5rem;
+    }
+
+    .tech-card p {
+        font-size: 1rem;
+    }
+
+    .timeline-item {
+        padding-left: 1.5rem;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.3rem;
+    }
+
+    .timeline-content p {
+        font-size: 0.95rem;
+    }
+
+    .contact-method {
+        padding: 1.25rem;
+    }
+
+    .contact-method h3 {
+        font-size: 1.1rem;
+    }
+
+    .form-group label {
+        font-size: 0.95rem;
+    }
+
+    .btn {
+        padding: 0.9rem 1.8rem;
+        font-size: 0.95rem;
+    }
+
+    .social-links {
+        gap: 1rem;
+    }
+
+    .social-links svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Mobile Small - 360px */
+@media (max-width: 360px) {
+    .container {
+        padding: 0 0.75rem;
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero p {
+        font-size: 0.95rem;
+    }
+
+    .section-title {
+        font-size: 1.4rem;
+    }
+
+    .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .tech-logo {
+        height: 50px;
     }
 }

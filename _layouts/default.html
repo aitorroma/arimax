@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     {% seo %}
 </head>
 <body>
@@ -74,10 +75,10 @@
             </div>
             <p class="copyright">&copy; {{ 'now' | date: "%Y" }} Arima X. Todos los derechos reservados.</p>
             <p class="credits">Creada por <a href="https://nimbox360.com" target="_blank" rel="noopener" style="color: var(--primary-color); text-decoration: none;">Nimbox360</a> - Agencia especializada en IA</p>
-            <p class="credits">Música generada con <a href="https://suno.ai" target="_blank" rel="noopener" style="color: var(--accent-color); text-decoration: none;">Suno.ai</a></p>
         </div>
     </footer>
 
+    <script src="{{ '/assets/js/animations.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 </body>
 </html>
