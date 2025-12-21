@@ -51,6 +51,15 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
+    const flipCards = document.querySelectorAll('.album-card-flip');
+    flipCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            if (!e.target.closest('a')) {
+                this.classList.toggle('flipped');
+            }
+        });
+    });
+
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
