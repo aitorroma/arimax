@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (mobileMenuToggle) {
         mobileMenuToggle.addEventListener('click', function() {
             navMenu.classList.toggle('active');
+            mobileMenuToggle.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
             
             const spans = this.querySelectorAll('span');
             if (navMenu.classList.contains('active')) {
@@ -22,11 +24,27 @@ document.addEventListener('DOMContentLoaded', function() {
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+                document.body.classList.remove('menu-open');
                 const spans = mobileMenuToggle.querySelectorAll('span');
                 spans[0].style.transform = 'none';
                 spans[1].style.opacity = '1';
                 spans[2].style.transform = 'none';
             });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (navMenu.classList.contains('active') && 
+                !navMenu.contains(e.target) && 
+                !mobileMenuToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+                document.body.classList.remove('menu-open');
+                const spans = mobileMenuToggle.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
         });
     }
     
@@ -59,6 +77,66 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    const languageBtn = document.getElementById('languageBtn');
+    const languageDropdown = document.getElementById('languageDropdown');
+    
+    if (languageBtn && languageDropdown) {
+        languageBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            languageDropdown.classList.toggle('active');
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!languageBtn.contains(e.target) && !languageDropdown.contains(e.target)) {
+                languageDropdown.classList.remove('active');
+            }
+        });
+
+        const languageOptions = document.querySelectorAll('.language-option');
+        languageOptions.forEach(option => {
+            option.addEventListener('click', function(e) {
+                e.preventDefault();
+                const lang = this.getAttribute('data-lang');
+                const langText = lang.toUpperCase();
+                
+                languageOptions.forEach(opt => opt.classList.remove('active'));
+                this.classList.add('active');
+                
+                languageBtn.querySelector('span').textContent = langText;
+                languageDropdown.classList.remove('active');
+                
+                let attempts = 0;
+                const maxAttempts = 50;
+                
+                function triggerTranslation() {
+                    attempts++;
+                    const selectElement = document.querySelector('.goog-te-combo');
+                    
+                    if (selectElement) {
+                        console.log('Google Translate found, changing to:', lang);
+                        selectElement.value = lang;
+                        
+                        const event = new Event('change', { bubbles: true });
+                        selectElement.dispatchEvent(event);
+                        
+                        selectElement.dispatchEvent(new Event('change'));
+                        
+                        if (selectElement.onchange) {
+                            selectElement.onchange();
+                        }
+                    } else if (attempts < maxAttempts) {
+                        console.log('Waiting for Google Translate... attempt', attempts);
+                        setTimeout(triggerTranslation, 200);
+                    } else {
+                        console.error('Google Translate not loaded after', maxAttempts, 'attempts');
+                    }
+                }
+                
+                triggerTranslation();
+            });
+        });
+    }
 
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
