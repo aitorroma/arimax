@@ -356,6 +356,16 @@ main {
     margin-right: 0.5rem;
 }
 
+.album-tracklist li a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.album-tracklist li a:hover {
+    color: var(--primary-color);
+}
+
 .album-featured-buttons {
     display: flex;
     gap: 1rem;
