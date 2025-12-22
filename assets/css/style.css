@@ -434,11 +434,12 @@ main {
 .music-card-image,
 .album-cover {
     width: 100%;
-    aspect-ratio: 1;
+    aspect-ratio: 1 / 1;
     background: var(--gradient);
-    border-radius: 10px;
+    border-radius: 12px;
     margin-bottom: 1rem;
     overflow: hidden;
+    position: relative;
 }
 
 .music-card-image img,
@@ -446,6 +447,8 @@ main {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
+    display: block;
 }
 
 .music-card h3,
@@ -1020,6 +1023,13 @@ main {
 .album-card-front {
     display: flex;
     flex-direction: column;
+}
+
+.album-card-flip .album-cover {
+    height: auto;
+    padding-bottom: 0;
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0;
 }
 
 .album-card-back {
