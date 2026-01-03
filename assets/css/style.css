@@ -2611,3 +2611,396 @@ main {
         text-align: left;
     }
 }
+
+/* Páginas de Canciones */
+.songs-hero {
+    padding: 150px 20px 80px;
+    background: #0a0a0a;
+    text-align: center;
+}
+
+.songs-hero-title {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    margin-bottom: 1rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.songs-hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}
+
+.songs-list {
+    padding: 80px 20px;
+    background: var(--dark-bg);
+}
+
+.songs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.song-card {
+    background: var(--light-bg);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.song-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(255, 0, 110, 0.3);
+}
+
+.song-card-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+}
+
+.song-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.song-card:hover .song-card-image img {
+    transform: scale(1.05);
+}
+
+.song-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.song-card:hover .song-card-overlay {
+    opacity: 1;
+}
+
+.song-card-play {
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+
+.song-card-info {
+    padding: 1.5rem;
+}
+
+.song-card-info h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.song-card-info p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.song-card-year {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Detalle de Canción */
+.song-detail-hero {
+    padding: 150px 20px 80px;
+    background: var(--dark-bg);
+}
+
+.song-detail-content {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+.song-detail-cover {
+    position: sticky;
+    top: 120px;
+}
+
+.song-detail-cover img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.song-detail-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.song-detail-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin: 0;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.song-detail-artist {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.song-detail-description {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.song-detail-year {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.song-detail-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.btn-song-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: var(--gradient);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 15px rgba(255, 0, 110, 0.4);
+}
+
+.btn-song-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 0, 110, 0.6);
+}
+
+.btn-song-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: transparent;
+    color: var(--text-primary);
+    text-decoration: none;
+    border-radius: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-song-secondary:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-song-tiktok {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: #000000;
+    color: #00f2ea;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 242, 234, 0.3);
+}
+
+.btn-song-tiktok:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 242, 234, 0.5);
+    background: #111111;
+}
+
+.song-detail-lyrics {
+    padding: 80px 20px;
+    background: var(--light-bg);
+}
+
+.lyrics-text {
+    max-width: 800px;
+    margin: 2rem auto 0;
+    line-height: 2;
+    font-size: 1.1rem;
+}
+
+.lyrics-text p {
+    margin-bottom: 2rem;
+}
+
+.lyrics-text strong {
+    color: var(--primary-color);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.song-detail-share {
+    padding: 60px 20px;
+    background: var(--dark-bg);
+    text-align: center;
+}
+
+.song-detail-share h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.share-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.share-btn {
+    padding: 0.8rem 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.share-btn:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* Sección de TikTok */
+.song-tiktok-section {
+    padding: 80px 20px;
+    background: var(--dark-bg);
+}
+
+.song-tiktok-section h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.tiktok-videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-items: center;
+}
+
+.tiktok-embed-container {
+    max-width: 605px;
+    min-width: 325px;
+}
+
+.tiktok-embed-container blockquote {
+    margin: 0;
+}
+
+.tiktok-placeholder {
+    background: var(--light-bg);
+    border-radius: 15px;
+    padding: 3rem 2rem;
+    text-align: center;
+    border: 2px dashed rgba(0, 242, 234, 0.3);
+}
+
+.tiktok-placeholder svg {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+    color: #00f2ea;
+}
+
+.tiktok-placeholder h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.tiktok-placeholder p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.tiktok-placeholder a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    background: #000000;
+    color: #00f2ea;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.tiktok-placeholder a:hover {
+    background: #111111;
+    transform: translateY(-2px);
+}
+
+/* Responsive para páginas de canciones */
+@media (max-width: 768px) {
+    .song-detail-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .song-detail-cover {
+        position: relative;
+        top: 0;
+    }
+
+    .songs-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .song-detail-actions {
+        flex-direction: column;
+    }
+
+    .btn-song-primary,
+    .btn-song-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+}
